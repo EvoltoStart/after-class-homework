@@ -1,30 +1,32 @@
 package algorithm;
 
 public class Quicksort {
-    static int partition(int arr[],int low,int high){
-        int base=arr[low];
-        while(low<high){
-            while (low<high&&arr[high]>=base) {
-                high--;
-            }
-            if(low<high){
-                arr[low]=arr[high];
-            }
-            while (low<high&&arr[low]<=base) {
-                low++;
-            }
-            if(low<high){
-                arr[high]=arr[low];
-            }
-            arr[low]=base;
-        }
-        return low;
+    static int[] partition(int arr[],int low,int high){
+       int base =arr[(low+high)/2];
+       while (low<=high){
+
+           while(low<=high&&arr[low]<base){
+               low++;
+           }
+           while(low<=high&&arr[high]>base){
+               high--;
+           }
+           if(low<=high){
+               int temp=arr[low];
+               arr[low]=arr[high];
+               arr[high]=temp;
+               low++;
+               high--;
+           }
+       }
+
+       return new int[]{high,low};
     }
     static void quickSort(int arr[],int low,int high){
         if(low<high){
-            int p=partition(arr, low, high);
-            quickSort(arr, low, p-1);
-            quickSort(arr ,p+1, high);
+            int[]  p=partition(arr, low, high);
+            quickSort(arr, low, p[0]);
+            quickSort(arr ,p[1], high);
         }
     }
 
