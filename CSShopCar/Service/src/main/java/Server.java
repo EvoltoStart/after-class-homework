@@ -36,10 +36,26 @@ class server implements Runnable {
                     System.out.println(ss);
                     writer.println(ss);
                     writer.flush();
+                } else if (s[0].equals("car")) {
+                    Map<String, Integer> map = shopCar.getCarNum();
+                    StringBuilder ss = new StringBuilder();
+                    for (Map.Entry<String, Integer> entry : map.entrySet()) {
+                        if(entry.getKey()!=null) {
+                            System.out.println(entry.getKey() + ":" + entry.getValue());
+
+                            ss.append(entry.getKey() + "购买数量: " + entry.getValue()).append(",");
+                        }else {
+                            System.out.println();
+                        }
+                    }
+                    System.out.println(ss);
+                    writer.println(ss);
+                    writer.flush();
+
                 } else {
                     if (shopCar.add(s[0], Integer.parseInt(s[1]))) {
                         Integer n = shopCar.getNumber(s[0]);
-                        writer.println("添加成功,苹果剩余数量：" + n.toString());
+                        writer.println("添加成功,"+s[0]+"剩余数量：" + n.toString());
                         writer.flush();
                     } else {
                         writer.write("添加失败\n");

@@ -34,7 +34,7 @@ public class Client {
         Thread thread=new Thread(new client(read));
         poor.submit(thread);
         thread.start();
-        System.out.println("输入指令：1：购买苹果 2：购买香蕉 3：购买橘子 4：退出 5：查看库存\n输入指令：");
+        System.out.println("输入指令：1：购买苹果 2：购买香蕉 3：购买橘子 4：退出 5：查看购物车 6：查看库存\n输入指令：");
         Scanner scanner=new Scanner(System.in);
         int n=scanner.nextInt();
         int num;
@@ -60,13 +60,17 @@ public class Client {
                     writer.flush();
                     break;
                 case 5:
-                    writer.write("num,num\n");
+                    writer.write("car,car\n");
                     writer.flush();
                     break;
                 case 4:;
                     System.out.println("退出");
                     poor.shutdown();
                 break;
+                case 6:
+                    writer.write("num,num\n");
+                    writer.flush();
+                    break;
 
             }
             if(n==4)break;
