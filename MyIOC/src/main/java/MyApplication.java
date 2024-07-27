@@ -24,7 +24,7 @@ public class MyApplication {
     public MyApplication(String path) throws ParserConfigurationException, IOException, ClassNotFoundException, SAXException, InstantiationException, IllegalAccessException {
 
         this.path=path;
-        //parseXml(path);
+        parseXml(path);
 
         /**
          *第二种方式
