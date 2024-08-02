@@ -1,28 +1,34 @@
 package com.wx.firstweb;
 
 import java.io.*;
+import java.util.Map;
+import javax.servlet.ServletException;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 
-@WebServlet(name = "helloServlet", value = "/hello-servlet")
+@WebServlet(name = "list", value = "/list")
 public class HelloServlet extends HttpServlet {
     private String message;
+    StringBuffer sb=new StringBuffer();
+    private ShopCar shopCar=new ShopCar();
 
-    public void init() {
-        message = "Hello World!";
+    @Override
+    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Map<String,Integer> map=shopCar.getMap();
+        sb.delete(0,sb.length());
+        sb.append("{\"lists\":[");
+        for (Map.Entry<String,Integer> entry:map.entrySet()){
+            sb.append("{\"name\":\""+entry.getKey()+"\",\"num\":"+entry.getValue()+"},");
+        }
+        if (!map.isEmpty()) {
+            sb.setLength(sb.length() - 1); // 移除最后一个逗号
+        }
+        sb.append("]}");
+        resp.setContentType("application/json;charset=utf-8");
+
+        PrintWriter out = resp.getWriter();
+        out.println(sb.toString());
+        out.flush();
     }
 
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setContentType("text/html");
-
-        // Hello
-        PrintWriter out = response.getWriter();
-        out.println("<html><body>");
-        out.println("<h1>" + message + "</h1>");
-        out.println("</body></html>");
-
-    }
-
-    public void destroy() {
-    }
 }

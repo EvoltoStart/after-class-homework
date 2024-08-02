@@ -6,6 +6,7 @@ import java.util.concurrent.Executors;
 
 class client implements Runnable{
 private BufferedReader reader;
+private ShopCar shopCar;
     public client(BufferedReader reader) {this.reader = reader;}
     @Override
     public void run() {
@@ -22,7 +23,7 @@ private BufferedReader reader;
 
     }
 
-    }
+}
 public class Client {
     public static void main(String[] args) throws IOException {
         Socket socket=new Socket("localhost", 8888);

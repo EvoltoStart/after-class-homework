@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>JSP - Hello World</title>
+    <script type="text/javascript" src="1.js"></script>
+</head>
+<body onload="list()">
+<br/>
+<form method="post" action="/shopcar" onsubmit="submitForm(event)">
+    <table border="1">
+        <thead>
+        <tr>
+            <th>商品名称</th>
+            <th>数量</th>
+            <th>修改数量</th>
+        </tr>
+        </thead>
+        <tbody id="list">
+        <!-- 数据将由JavaScript动态插入 -->
+        </tbody>
+    </table>
+    <br/>
+    <input type="submit" value="提交购物车">
+</form>
+</body>
+</html>
