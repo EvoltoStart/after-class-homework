@@ -6,32 +6,24 @@ import java.util.Map;
 public class Trie {
     private TrieNode root;
 
-    // TrieNode class representing each node in the trie
     private class TrieNode {
         Map<Character, TrieNode> children;
-        boolean isEndOfWord;
-
+        boolean isWord;
         TrieNode() {
             children = new HashMap<>();
-            isEndOfWord = false;
+            isWord = false;
         }
     }
-
-    // Constructor to initialize the root node
     public Trie() {
         root = new TrieNode();
     }
-
-    // Insert a word into the trie
     public void insert(String word) {
         TrieNode current = root;
         for (char ch : word.toCharArray()) {
             current = current.children.computeIfAbsent(ch, c -> new TrieNode());
         }
-        current.isEndOfWord = true;
+        current.isWord = true;
     }
-
-    // Search for a word in the trie
     public boolean search(String word) {
         TrieNode current = root;
         for (char ch : word.toCharArray()) {
@@ -41,10 +33,8 @@ public class Trie {
             }
             current = node;
         }
-        return current.isEndOfWord;
+        return current.isWord;
     }
-
-    // Check if any word in the trie starts with a given prefix
     public boolean startsWith(String prefix) {
         TrieNode current = root;
         for (char ch : prefix.toCharArray()) {
@@ -56,19 +46,18 @@ public class Trie {
         }
         return true;
     }
-
     public static void main(String[] args) {
         Trie trie = new Trie();
         trie.insert("apple");
         trie.insert("app");
         trie.insert("banana");
 
-        System.out.println(trie.search("apple"));  // true
-        System.out.println(trie.search("app"));    // true
-        System.out.println(trie.search("banana")); // true
-        System.out.println(trie.search("ban"));    // false
-        System.out.println(trie.startsWith("ban")); // true
-        System.out.println(trie.startsWith("app")); // true
-        System.out.println(trie.startsWith("apl")); // false
+        System.out.println(trie.search("apple"));
+        System.out.println(trie.search("app"));
+        System.out.println(trie.search("banana"));
+        System.out.println(trie.search("ban"));
+        System.out.println(trie.startsWith("ban"));
+        System.out.println(trie.startsWith("app"));
+        System.out.println(trie.startsWith("apl"));
     }
 }

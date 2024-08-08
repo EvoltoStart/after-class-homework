@@ -10,7 +10,6 @@ import java.io.PrintWriter;
 import java.util.Map;
 
 public class Car extends HttpServlet {
-    public ShopCar shopCar;
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8"); // 确保接收的请求数据编码为UTF-8

@@ -1,5 +1,7 @@
 package com.wx.firstweb;
 
+import car.ShopCar;
+
 import java.io.*;
 import java.util.Map;
 import javax.servlet.ServletException;
@@ -10,10 +12,11 @@ import javax.servlet.annotation.*;
 public class HelloServlet extends HttpServlet {
     private String message;
     StringBuffer sb=new StringBuffer();
-    private ShopCar shopCar=new ShopCar();
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        ShopCar shopCar = new ShopCar();
         Map<String,Integer> map=shopCar.getMap();
         sb.delete(0,sb.length());
         sb.append("{\"lists\":[");
